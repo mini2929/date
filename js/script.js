@@ -69,9 +69,12 @@ const second = time[2].classList.add("second")
 time[0].textContent = now.getHours();
 time[1].textContent = now.getMinutes();
 time[2].textContent = now.getSeconds();
+
+미션 실패
+
 */
 
-
+/*
 // mission2 - 현재시간이 13시를 넘기면 em 안쪽의 'am'을 'pm'으로 출력
 
 const title = document.querySelector("h1");
@@ -99,3 +102,74 @@ setInterval(() => {
 
 // setInterval : 특정 함수를 일정시간마다 반복 호출
 // setInterval(함수, 인터벌 시간) : 인터벌간격마다 함수 반복 호출
+
+*/
+
+const numbers = document.querySelectorAll(".screen span");
+
+setInterval(() => {
+    getTime().forEach((num, idx) => setTime(num, idx))
+}, 1000);
+
+
+
+// 시간값을 구해서 반환하는 함수
+function getTime() {
+    const now = new Date();
+    let hr = now.getHours();
+    let min = now.getMinutes();
+    let sec = now.getSeconds();
+    return [hr, min, sec];
+}
+
+// 반환된 시간값을 DOM에 세팅하는 함수
+function setTime(num, index) {
+    // 전달받은 첫번째 인수값이 한자리 숫자면 앞에 "0" 붙여 출력
+    // 그렇지 않으면 그냥 값 출력
+    num = num < 10 ? "0" + num : num;
+    
+    // 각 span 배열에서 두번째 인수로 전달받은 index 번째 요소에 위에서 가공한 num값을 출력
+    numbers[index].innerText = num;
+
+}
+
+/*
+
+//시간에 따른 테마 변경 함수
+function changeTheme() {
+    const hr = new Date().getHours();
+
+    if (hr >= 5 && hr < 11) {
+    }
+}
+
+*/
+
+  //시간에 따른 테마 변경 함수
+function changeTheme() {
+    const hr = new Date().getHours();
+
+    if (hr >= 5 && hr < 11) {
+    main.className = "";
+    main.classList.add("morning");
+    }
+    if (hr >= 11 && hr < 16) {
+    main.className = "";
+    main.classList.add("afternoon");
+    }
+    if (hr >= 16 && hr < 20) {
+    main.className = "";
+    main.classList.add("evening");
+    }
+    if (hr >= 20 || hr < 5) {
+    main.className = "";
+    main.classList.add("night");
+    }
+}
+
+const main = document.querySelector("main");
+
+
+
+
+import { themeData } from "./data.js"; 
