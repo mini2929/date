@@ -81,14 +81,21 @@ const title = document.querySelector("h1");
 
 const [em, spanHr, spanMin, spanSec] = title.children;
 
-const hr = now.getHours();
-const min = now.getMinutes();
-const sec = now.getSeconds();
+setInterval(() => {
+    const now = new Date();
+    const hr = now.getHours();
+    const min = now.getMinutes();
+    const sec = now.getSeconds();
 
 // 현재 시간값을 활용해 am,pm 표시 - 삼항연산자로 분기처리
-let apm = hr < 13 ? "am":"pm";
+    let apm = hr < 13 ? "am":"pm";
 
-em.innerText = apm;
-spanHr.innerText = hr;
-spanMin.innerText = min;
-spanSec.innerText = sec;
+    em.innerText = apm;
+    spanHr.innerText = hr;
+    spanMin.innerText = min;
+    spanSec.innerText = sec;
+
+}, 1000);
+
+// setInterval : 특정 함수를 일정시간마다 반복 호출
+// setInterval(함수, 인터벌 시간) : 인터벌간격마다 함수 반복 호출
